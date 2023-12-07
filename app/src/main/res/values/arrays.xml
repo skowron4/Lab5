@@ -1,0 +1,26 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="daynight_entries">
+        <item>Day</item>
+        <item>Night</item>
+        <item>System</item>
+        <item>Dynamic</item>
+    </string-array>
+
+    <string-array name="daynight_values">
+        <item>day</item>
+        <item>night</item>
+        <item>system</item>
+        <item>dynamic</item>
+    </string-array>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+</resources>

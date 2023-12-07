@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Lab5</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Adam Skowron</string>
+    <string name="nav_header_subtitle">Lab 5</string>
+    <string name="nav_header_desc">Lab 5</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello">Hello my friend!</string>
+    <string name="about_author">Adam Skowron 266571</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_dates">Items</string>
+    <string name="theme">Theme</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_username">New Username</string>
+    <string name="new_description">New Description</string>
+    <string name="btn_update">Update</string>
+
+    <string name="image1">Kai</string>
+    <string name="image2">Zane</string>
+    <string name="image3">Jay</string>
+    <string name="image4">Cole</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="name">Imię:</string>
+    <string name="enter_name">Podaj imię</string>
+    <string name="power">Siła:</string>
+    <string name="gender">Płeć:</string>
+    <string name="man">Mężczyzna</string>
+    <string name="woman">Kobieta</string>
+    <string name="desc">Opis:</string>
+    <string name="enter_desc">Podaj opis</string>
+    <string name="cancel">Wyjdź</string>
+    <string name="save">Zapisz</string>
+    <string name="delete">Usuń</string>
+    <string name="zero">0</string>
+</resources>

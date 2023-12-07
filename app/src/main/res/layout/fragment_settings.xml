@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.HomeViewFragmentSettings">
+
+    <EditText
+        android:id="@+id/edit_text_new_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_new_user"
+        android:autofillHints="Username" />
+
+    <TextView
+        android:id="@+id/text_new_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/new_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_new_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/new_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_new_user" />
+
+    <EditText
+        android:id="@+id/edit_text_desc"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:autofillHints="Description"
+        android:ems="10"
+        android:inputType="textCapSentences|textMultiLine"
+        android:gravity="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:scrollHorizontally="false"
+        app:layout_constraintTop_toBottomOf="@+id/text_new_desc" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_images"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button">
+
+        <RadioButton
+            android:id="@+id/radio_button_image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/image1"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/image2"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_image3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/image3"/>
+        <RadioButton
+            android:id="@+id/radio_button_image4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/image4"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_desc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
