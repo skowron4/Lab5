@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RadioButton
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.skow.lab5.MainActivity
 import com.skow.lab5.R
@@ -32,13 +29,6 @@ class EditItemFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         item = arguments?.getParcelable(ARG_ITEM)
-        val seekBar: SeekBar = binding.seekBarStrength
-        val textViewStrengthValue: TextView = binding.textViewStrengthValue
-        val cancelButton: Button = binding.cancelButton
-        val saveButton: Button = binding.saveButton
-        val maleButton: RadioButton = binding.radioButtonMale
-        val femaleButton: RadioButton = binding.radioButtonFemale
-        val deleteButton: Button = binding.deleteButton
 
         if (item != null) {
             binding.editTextName.setText(item?.name)
@@ -49,27 +39,27 @@ class EditItemFragment : DialogFragment() {
             when (item?.gender) {
                 "M" -> {
                     binding.image.setImageResource(R.drawable.male)
-                    maleButton.isChecked = true
+                    binding.radioButtonMale.isChecked = true
                 }
                 "K" -> {
                     binding.image.setImageResource(R.drawable.femenine)
-                    femaleButton.isChecked = true
+                    binding.radioButtonFemale.isChecked = true
                 }
             }
         }
 
-        maleButton.setOnClickListener {
+        binding.radioButtonMale.setOnClickListener {
             binding.image.setImageResource(R.drawable.male)
         }
 
-        femaleButton.setOnClickListener {
+        binding.radioButtonFemale.setOnClickListener {
             binding.image.setImageResource(R.drawable.femenine)
         }
 
 
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekBarStrength.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                textViewStrengthValue.text = (progress / 5.0f).toString()
+                binding.textViewStrengthValue.text = (progress / 5.0f).toString()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -82,15 +72,15 @@ class EditItemFragment : DialogFragment() {
         })
 
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             dismiss()
         }
 
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             val newItem = Placeholder.PlaceholderItem(
                 id = item?.id!!,
                 name = binding.editTextName.text.toString(),
-                power = textViewStrengthValue.text.toString().toFloat(),
+                power = binding.textViewStrengthValue.text.toString().toFloat(),
                 gender = if (binding.radioButtonMale.isChecked) "M" else "K",
                 desc = binding.editTextDescription.text.toString())
 
@@ -98,7 +88,7 @@ class EditItemFragment : DialogFragment() {
             itemViewModel.updateItem(newItem)
         }
 
-        deleteButton.setOnClickListener {
+        binding.deleteButton.setOnClickListener {
             val itemViewModel = (requireActivity() as MainActivity).itemViewModel
             itemViewModel.deleteItem(item)
             dismiss()

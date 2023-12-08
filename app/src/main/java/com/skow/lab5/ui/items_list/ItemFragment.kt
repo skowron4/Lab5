@@ -1,5 +1,6 @@
 package com.skow.lab5.ui.items_list
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -73,6 +74,7 @@ class ItemFragment : Fragment() {
         })
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         val recyclerView: RecyclerView? = view?.findViewById(R.id.list)

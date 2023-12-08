@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.skow.lab5.MainActivity
 import com.skow.lab5.databinding.FragmentAddItemBinding
@@ -20,7 +18,7 @@ class AddItemFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,14 +26,9 @@ class AddItemFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val seekBar: SeekBar = binding.seekBarStrength
-        val textViewStrengthValue: TextView = binding.textViewStrengthValue
-        val cancelButton: Button = binding.cancelButton
-        val saveButton: Button = binding.saveButton
-
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekBarStrength.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                textViewStrengthValue.text = (progress / 5.0f).toString()
+                binding.textViewStrengthValue.text = (progress / 5.0f).toString()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -47,15 +40,15 @@ class AddItemFragment : DialogFragment() {
             }
         })
 
-        cancelButton.setOnClickListener {
+        binding.cancelButton.setOnClickListener {
             dismiss()
         }
 
-        saveButton.setOnClickListener {
+        binding.saveButton.setOnClickListener {
             val newItem = Placeholder.PlaceholderItem(
                 id = Placeholder.nextIndex(),
                 name = binding.editTextName.text.toString(),
-                power = textViewStrengthValue.text.toString().toFloat(),
+                power = binding.textViewStrengthValue.text.toString().toFloat(),
                 gender = if (binding.radioButtonMale.isChecked) "M" else "K",
                 desc = binding.editTextDescription.text.toString())
 
