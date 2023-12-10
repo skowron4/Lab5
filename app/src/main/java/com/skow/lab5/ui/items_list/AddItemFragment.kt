@@ -8,7 +8,7 @@ import android.widget.SeekBar
 import androidx.fragment.app.DialogFragment
 import com.skow.lab5.MainActivity
 import com.skow.lab5.databinding.FragmentAddItemBinding
-import com.skow.lab5.ui.items_list.placeholder.Placeholder
+import com.skow.lab5.ui.items_list.placeholder.ItemEntity
 
 class AddItemFragment : DialogFragment() {
 
@@ -45,8 +45,7 @@ class AddItemFragment : DialogFragment() {
         }
 
         binding.saveButton.setOnClickListener {
-            val newItem = Placeholder.PlaceholderItem(
-                id = Placeholder.nextIndex(),
+            val newItem = ItemEntity(
                 name = binding.editTextName.text.toString(),
                 power = binding.textViewStrengthValue.text.toString().toFloat(),
                 gender = if (binding.radioButtonMale.isChecked) "M" else "K",
@@ -54,7 +53,6 @@ class AddItemFragment : DialogFragment() {
 
             val itemViewModel = (requireActivity() as MainActivity).itemViewModel
             itemViewModel.addItem(newItem)
-
         }
     }
 

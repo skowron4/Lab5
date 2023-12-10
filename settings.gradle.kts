@@ -11,8 +11,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
 }
 
 rootProject.name = "Lab5"
 include(":app")
- 

@@ -9,13 +9,13 @@ import androidx.fragment.app.DialogFragment
 import com.skow.lab5.MainActivity
 import com.skow.lab5.R
 import com.skow.lab5.databinding.FragmentEditItemBinding
-import com.skow.lab5.ui.items_list.placeholder.Placeholder
+import com.skow.lab5.ui.items_list.placeholder.ItemEntity
 
 class EditItemFragment : DialogFragment() {
 
     private var _binding: FragmentEditItemBinding? = null
     private val binding get() = _binding!!
-    private var item: Placeholder.PlaceholderItem? = null
+    private var item: ItemEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,14 +77,14 @@ class EditItemFragment : DialogFragment() {
         }
 
         binding.saveButton.setOnClickListener {
-            val newItem = Placeholder.PlaceholderItem(
+            val newItem = ItemEntity(
                 id = item?.id!!,
                 name = binding.editTextName.text.toString(),
                 power = binding.textViewStrengthValue.text.toString().toFloat(),
                 gender = if (binding.radioButtonMale.isChecked) "M" else "K",
                 desc = binding.editTextDescription.text.toString())
 
-            val itemViewModel = (requireActivity() as MainActivity).itemViewModel
+            val itemViewModel  = (requireActivity() as MainActivity).itemViewModel
             itemViewModel.updateItem(newItem)
         }
 
@@ -104,7 +104,7 @@ class EditItemFragment : DialogFragment() {
     companion object {
         const val ARG_ITEM = "item"
 
-        fun newInstance(item: Placeholder.PlaceholderItem): EditItemFragment {
+        fun newInstance(item: ItemEntity): EditItemFragment {
             val fragment = EditItemFragment()
             val args = Bundle()
             args.putParcelable(ARG_ITEM, item)

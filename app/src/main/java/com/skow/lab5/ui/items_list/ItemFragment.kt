@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.skow.lab5.MainActivity
 import com.skow.lab5.R
-import com.skow.lab5.ui.items_list.placeholder.Placeholder
+import com.skow.lab5.ui.items_list.placeholder.Repository
 
 
 class ItemFragment : Fragment() {
@@ -44,7 +44,10 @@ class ItemFragment : Fragment() {
                         columnCount <= 1 -> LinearLayoutManager(context)
                         else -> GridLayoutManager(context, columnCount)
                     }
-                    adapter = ItemRecyclerViewAdapter(Placeholder.ITEMS, childFragmentManager)
+
+                    adapter = ItemRecyclerViewAdapter(
+                        Repository.getInstance(requireContext()).getData(),
+                        childFragmentManager)
                 }
             }
 
@@ -67,10 +70,14 @@ class ItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemViewModel = (requireActivity() as MainActivity).itemViewModel
+        itemViewModel = (requireActivity() as MainActivity).itemViewModel//ViewModelProvider(this,
+//            ViewModelProvider.AndroidViewModelFactory(requireActivity().application))[ItemViewModel::class.java]
+
         itemViewModel.items.observe(viewLifecycleOwner, Observer { items ->
             val recyclerView: RecyclerView? = view.findViewById(R.id.list)
-            recyclerView?.adapter = ItemRecyclerViewAdapter(items, childFragmentManager)
+            recyclerView?.adapter = ItemRecyclerViewAdapter(
+                items,
+                childFragmentManager)
         })
     }
 

@@ -13,9 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.skow.lab5.databinding.ActivityMainBinding
-import com.skow.lab5.ui.items_list.ItemFragment
 import com.skow.lab5.ui.items_list.ItemViewModel
-import com.skow.lab5.ui.items_list.placeholder.Placeholder
 
 class MainActivity : AppCompatActivity() {
 

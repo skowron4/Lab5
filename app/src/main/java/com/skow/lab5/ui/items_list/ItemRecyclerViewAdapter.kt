@@ -1,5 +1,7 @@
 package com.skow.lab5.ui.items_list
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,10 +11,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skow.lab5.R
 import com.skow.lab5.databinding.FragmentItemBinding
-import com.skow.lab5.ui.items_list.placeholder.Placeholder.PlaceholderItem
+import com.skow.lab5.ui.items_list.placeholder.ItemEntity
 
 class ItemRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>,
+    private var values: List<ItemEntity>,
     private val fragmentManager: FragmentManager)
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder>(){
 
@@ -28,6 +30,7 @@ class ItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
+        Log.i("Dziala", values.toString())
         holder.idView.text = item.id.toString()
         holder.contentView.text = item.name
         when (item.gender){
@@ -44,7 +47,9 @@ class ItemRecyclerViewAdapter(
         }
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int {
+        return values.size
+    }
 
     inner class ViewHolder(binding: FragmentItemBinding): RecyclerView.ViewHolder(binding.root){
         val idView: TextView = binding.itemNumber
