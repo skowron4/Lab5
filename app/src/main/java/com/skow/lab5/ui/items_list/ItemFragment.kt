@@ -47,8 +47,10 @@ class ItemFragment : Fragment() {
 
                     adapter = ItemRecyclerViewAdapter(
                         Repository.getInstance(requireContext()).getData(),
-                        childFragmentManager)
+                        childFragmentManager,
+                        (requireActivity() as MainActivity))
                 }
+
             }
 
             childFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -70,14 +72,14 @@ class ItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemViewModel = (requireActivity() as MainActivity).itemViewModel//ViewModelProvider(this,
-//            ViewModelProvider.AndroidViewModelFactory(requireActivity().application))[ItemViewModel::class.java]
+        itemViewModel = (requireActivity() as MainActivity).itemViewModel
 
         itemViewModel.items.observe(viewLifecycleOwner, Observer { items ->
             val recyclerView: RecyclerView? = view.findViewById(R.id.list)
             recyclerView?.adapter = ItemRecyclerViewAdapter(
                 items,
-                childFragmentManager)
+                childFragmentManager,
+                (requireActivity() as MainActivity))
         })
     }
 

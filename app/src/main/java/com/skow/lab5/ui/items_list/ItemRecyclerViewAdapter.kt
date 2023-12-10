@@ -7,17 +7,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.skow.lab5.MainActivity
 import com.skow.lab5.R
 import com.skow.lab5.databinding.FragmentItemBinding
 import com.skow.lab5.ui.items_list.placeholder.ItemEntity
 
 class ItemRecyclerViewAdapter(
     private var values: List<ItemEntity>,
-    private val fragmentManager: FragmentManager)
+    private val fragmentManager: FragmentManager,
+    private val activity: MainActivity
+)
     : RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder>(){
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -28,9 +31,9 @@ class ItemRecyclerViewAdapter(
             false))
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        Log.i("Dziala", values.toString())
         holder.idView.text = item.id.toString()
         holder.contentView.text = item.name
         when (item.gender){
@@ -44,6 +47,13 @@ class ItemRecyclerViewAdapter(
             editItemFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Lab5)
 
             editItemFragment.show(fragmentManager, "EditItemFragment")
+        }
+
+        holder.itemView.setOnLongClickListener {
+            val itemViewModel = activity.itemViewModel
+            Log.i("Dziala", item.id.toString())
+            itemViewModel.deleteItem(item)
+            true // Oznacz jako obsłużone
         }
     }
 
