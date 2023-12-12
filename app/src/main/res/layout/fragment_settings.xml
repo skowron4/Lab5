@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_text_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/button">
+        app:layout_constraintBottom_toTopOf="@+id/update_button">
 
         <RadioButton
             android:id="@+id/radio_button_image1"
@@ -83,13 +83,13 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/update_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_images" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,7 @@ class HomeViewFragmentSettings : Fragment() {
 
         _binding = FragmentSettingsBinding.bind(view)
 
-        binding.button.setOnClickListener{
+        binding.updateButton.setOnClickListener{
             sharedViewModel.hello.value = binding.editTextNewUser.text.toString()
             sharedViewModel.desc.value = binding.editTextDesc.text.toString()
 

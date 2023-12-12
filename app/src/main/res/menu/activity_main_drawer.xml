@@ -16,5 +16,9 @@
             android:id="@+id/nav_items_list"
             android:icon="@drawable/ic_data_foreground"
             android:title="@string/menu_dates" />
+        <item
+            android:id="@+id/nav_set_img"
+            android:icon="@drawable/ic_data_foreground"
+            android:title="@string/menu_imgs" />
     </group>
 </menu>

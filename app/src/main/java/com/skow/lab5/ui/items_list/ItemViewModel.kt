@@ -1,6 +1,7 @@
 package com.skow.lab5.ui.items_list
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +17,7 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
     private val _items = MutableLiveData<List<ItemEntity>>()
     val items: LiveData<List<ItemEntity>> get() = _items
 
-   val dataBase: Repository
+    private val dataBase: Repository
 
     init {
 //        _items.value = Placeholder.ITEMS
@@ -36,7 +37,12 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteItem(item: ItemEntity?){
         dataBase.deleteItem(item!!)
+        Toast.makeText(getApplication(), "Usunieto item ${item.id}", Toast.LENGTH_SHORT).show()
         _items.value = dataBase.getData().toList()
+    }
+
+    fun getItem(id: Int): ItemEntity {
+        return dataBase.getItem(id)
     }
 
 //    fun addItem(item: Placeholder.PlaceholderItem) {

@@ -22,4 +22,28 @@
         android:name="com.skow.lab5.ui.items_list.ItemFragment"
         android:label="@string/menu_dates"
         tools:layout="@layout/fragment_item_list" />
+
+    <fragment
+        android:id="@+id/nav_set_img"
+        android:name="com.skow.lab5.ui.set_image.FragmentSetImage"
+        android:label="@string/menu_imgs"
+        tools:layout="@layout/fragment_set_image" />
+
+    <fragment
+        android:id="@+id/nav_add_item"
+        android:name="com.skow.lab5.ui.items_list.AddItemFragment"
+        android:label="@string/add_item"
+        tools:layout="@layout/fragment_add_item" />
+
+    <fragment
+        android:id="@+id/nav_edit_item"
+        android:name="com.skow.lab5.ui.items_list.EditItemFragment"
+        android:label="@string/edit_item"
+        tools:layout="@layout/fragment_edit_item" />
+
+    <fragment
+        android:id="@+id/nav_details_item"
+        android:name="com.skow.lab5.ui.items_list.DetailsItemFragment"
+        android:label="@string/menu_imgs"
+        tools:layout="@layout/fragment_add_item" />
 </navigation>

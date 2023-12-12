@@ -12,6 +12,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_dates">Items</string>
+    <string name="menu_imgs">Set image</string>
     <string name="theme">Theme</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_username">New Username</string>
@@ -45,8 +46,16 @@
     <string name="woman">Kobieta</string>
     <string name="desc">Opis:</string>
     <string name="enter_desc">Podaj opis</string>
-    <string name="cancel">Wyjdź</string>
+    <string name="back">Wyjdź</string>
     <string name="save">Zapisz</string>
     <string name="delete">Usuń</string>
     <string name="zero">0</string>
+
+    <string name="confirm_deletion">Potwierdź usunięcie</string>
+    <string name="question_about_deletion">Czy na pewno chcesz usunąć ten element?</string>
+    <string name="accept">Tak</string>
+    <string name="cancel">Anuluj</string>
+
+    <string name="add_item">Dodaj</string>
+    <string name="edit_item">Edytuj</string>
 </resources>

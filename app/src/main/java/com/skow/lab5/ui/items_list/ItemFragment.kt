@@ -1,21 +1,26 @@
 package com.skow.lab5.ui.items_list
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.skow.lab5.MainActivity
 import com.skow.lab5.R
+import com.skow.lab5.databinding.FragmentItemBinding
+import com.skow.lab5.ui.items_list.placeholder.ItemEntity
 import com.skow.lab5.ui.items_list.placeholder.Repository
 
 
@@ -46,23 +51,20 @@ class ItemFragment : Fragment() {
                     }
 
                     adapter = ItemRecyclerViewAdapter(
-                        Repository.getInstance(requireContext()).getData(),
-                        childFragmentManager,
-                        (requireActivity() as MainActivity))
+                        Repository.getInstance(requireContext()).getData())
                 }
-
             }
 
-            childFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+//            childFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
             val fab: FloatingActionButton = view.findViewById(R.id.fab)
 
             fab.setOnClickListener {
-                val addItemFragment = AddItemFragment()
+                findNavController().navigate(R.id.nav_add_item)
 
-                addItemFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Lab5)
-
-                addItemFragment.show(requireActivity().supportFragmentManager, "AddItemFragment")
+//                addItemFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Lab5)
+//
+//                addItemFragment.show(requireActivity().supportFragmentManager, "AddItemFragment")
             }
         }
 
@@ -77,17 +79,14 @@ class ItemFragment : Fragment() {
         itemViewModel.items.observe(viewLifecycleOwner, Observer { items ->
             val recyclerView: RecyclerView? = view.findViewById(R.id.list)
             recyclerView?.adapter = ItemRecyclerViewAdapter(
-                items,
-                childFragmentManager,
-                (requireActivity() as MainActivity))
+                items)
         })
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         val recyclerView: RecyclerView? = view?.findViewById(R.id.list)
-        recyclerView?.adapter?.notifyDataSetChanged()
+        recyclerView?.adapter?.notifyItemInserted(itemViewModel.items.value!!.size)
     }
 
     companion object {
@@ -101,4 +100,69 @@ class ItemFragment : Fragment() {
                 }
             }
     }
+
+    inner class ItemRecyclerViewAdapter(
+        private var values: List<ItemEntity>)
+        : RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder>(){
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): ViewHolder {
+            return ViewHolder(
+                FragmentItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false))
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val item = values[position]
+            holder.idView.text = item.id.toString()
+            holder.contentView.text = item.name
+            when (item.gender){
+                "M" -> holder.imgView.setImageResource(R.drawable.male)
+                "K" -> holder.imgView.setImageResource(R.drawable.femenine)
+            }
+
+            holder.itemView.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("item", item.id)
+                findNavController().navigate(R.id.nav_details_item, bundle)
+            }
+
+            holder.itemView.setOnLongClickListener {
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle(R.string.confirm_deletion)
+                builder.setMessage(R.string.question_about_deletion)
+
+                builder.setPositiveButton(R.string.accept) { _, _ ->
+                    itemViewModel.deleteItem(item)
+                }
+
+                builder.setNegativeButton(R.string.cancel, null)
+
+                val dialog = builder.create()
+                dialog.show()
+
+                true
+            }
+        }
+
+        override fun getItemCount(): Int {
+            return values.size
+        }
+
+        inner class ViewHolder(binding: FragmentItemBinding): RecyclerView.ViewHolder(binding.root){
+            val idView: TextView = binding.itemNumber
+            val contentView: TextView = binding.content
+            val imgView: ImageView = binding.rowImage
+
+            override fun toString(): String {
+                return super.toString() + " '" + contentView.text + "'"
+            }
+
+        }
+    }
+
 }

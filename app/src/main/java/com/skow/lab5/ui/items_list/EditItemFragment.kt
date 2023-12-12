@@ -1,11 +1,15 @@
 package com.skow.lab5.ui.items_list
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.findNavController
 import com.skow.lab5.MainActivity
 import com.skow.lab5.R
 import com.skow.lab5.databinding.FragmentEditItemBinding
@@ -27,26 +31,6 @@ class EditItemFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        item = arguments?.getParcelable(ARG_ITEM)
-
-        if (item != null) {
-            binding.editTextName.setText(item?.name)
-            binding.editTextDescription.setText(item?.desc)
-            binding.seekBarStrength.progress = item?.power?.toInt()!! * 5
-            binding.textViewStrengthValue.text = item?.power.toString()
-
-            when (item?.gender) {
-                "M" -> {
-                    binding.image.setImageResource(R.drawable.male)
-                    binding.radioButtonMale.isChecked = true
-                }
-                "K" -> {
-                    binding.image.setImageResource(R.drawable.femenine)
-                    binding.radioButtonFemale.isChecked = true
-                }
-            }
-        }
 
         binding.radioButtonMale.setOnClickListener {
             binding.image.setImageResource(R.drawable.male)
@@ -73,7 +57,7 @@ class EditItemFragment : DialogFragment() {
 
 
         binding.cancelButton.setOnClickListener {
-            dismiss()
+            findNavController().navigateUp()
         }
 
         binding.saveButton.setOnClickListener {
@@ -86,12 +70,49 @@ class EditItemFragment : DialogFragment() {
 
             val itemViewModel  = (requireActivity() as MainActivity).itemViewModel
             itemViewModel.updateItem(newItem)
+
         }
 
         binding.deleteButton.setOnClickListener {
-            val itemViewModel = (requireActivity() as MainActivity).itemViewModel
-            itemViewModel.deleteItem(item)
-            dismiss()
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(R.string.confirm_deletion)
+            builder.setMessage(R.string.question_about_deletion)
+
+            builder.setPositiveButton(R.string.accept) { _, _ ->
+                val itemViewModel = (requireActivity() as MainActivity).itemViewModel
+                itemViewModel.deleteItem(item)
+                findNavController().navigateUp()
+            }
+
+            builder.setNegativeButton(R.string.cancel, null)
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val itemId = arguments?.getInt("item")
+
+        if (itemId != null){
+            item = (requireActivity() as MainActivity).itemViewModel.getItem(itemId)
+            binding.editTextName.setText(item?.name)
+            binding.editTextDescription.setText(item?.desc)
+            binding.seekBarStrength.progress = item?.power?.toInt()!! * 5
+            binding.textViewStrengthValue.text = item?.power.toString()
+
+            when (item?.gender) {
+                "M" -> {
+                    binding.image.setImageResource(R.drawable.male)
+                    binding.radioButtonMale.isChecked = true
+                }
+                "K" -> {
+                    binding.image.setImageResource(R.drawable.femenine)
+                    binding.radioButtonFemale.isChecked = true
+                }
+            }
         }
     }
 

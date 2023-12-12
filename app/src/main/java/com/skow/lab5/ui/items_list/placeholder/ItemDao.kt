@@ -9,6 +9,8 @@ import androidx.room.Update
 interface ItemDao {
     @Query("SELECT * FROM items")
     fun getAllItems(): MutableList<ItemEntity>
+    @Query("SELECT * FROM items WHERE id = :item")
+    fun getItem(item: Int):ItemEntity
     @Insert
     fun addItem(item: ItemEntity)
     @Update

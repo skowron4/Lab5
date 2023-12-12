@@ -28,7 +28,7 @@ class SwipeViewFragment : Fragment() {
 
         val tabLayout = binding.tabLayout
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = "TAB ${(position + 1)}"
+            tab.text = "SET ${(position + 1)}"
         }.attach()
 
         return binding.root

@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_name"
         android:layout_below="@id/textViewName"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:enabled="false"/>
 
     <LinearLayout
         android:id="@+id/layoutPower"
@@ -49,7 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutPower"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:enabled="false"/>
 
     <TextView
         android:id="@+id/textViewGender"
@@ -63,22 +65,25 @@
 
     <RadioGroup
         android:id="@+id/radioGroupGender"
-        android:layout_width="match_parent"
+        android:layout_width="193dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewGender"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:enabled="false">
 
         <RadioButton
             android:id="@+id/radioButtonMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/man" />
+            android:text="@string/man"
+            android:enabled="false"/>
 
         <RadioButton
             android:id="@+id/radioButtonFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/woman" />
+            android:text="@string/woman"
+            android:enabled="false"/>
 
     </RadioGroup>
 
@@ -92,13 +97,24 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"/>
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textViewGender"
+        android:layout_alignEnd="@+id/radioGroupGender"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="-50dp" />
+
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_desc"
         android:layout_below="@id/textViewDescription"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:enabled="false"/>
 
     <LinearLayout
         android:layout_below="@+id/editTextDescription"
@@ -115,11 +131,11 @@
             android:layout_margin="10dp"/>
 
         <Button
-            android:id="@+id/save_button"
+            android:id="@+id/modify_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/save"
+            android:text="@string/edit_item"
             android:layout_margin="10dp"/>
     </LinearLayout>
 

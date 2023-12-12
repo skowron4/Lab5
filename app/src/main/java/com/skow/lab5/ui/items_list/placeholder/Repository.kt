@@ -1,5 +1,6 @@
 package com.skow.lab5.ui.items_list.placeholder
 
+import android.content.ClipData.Item
 import android.content.Context
 
 class Repository(context: Context) {
@@ -39,6 +40,11 @@ class Repository(context: Context) {
     fun deleteItem(item: ItemEntity){
         itemDao.deleteItem(item)
     }
+
+    fun getItem(id: Int): ItemEntity {
+        return itemDao.getItem(id)
+    }
+
     companion object {
         private var R_INSTANCE: Repository? = null
         fun getInstance(context: Context): Repository {
