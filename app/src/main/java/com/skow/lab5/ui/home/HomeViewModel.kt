@@ -7,5 +7,5 @@ import com.skow.lab5.R
 class HomeViewModel : ViewModel() {
     val hello = MutableLiveData("Hello my friend!")
     val desc = MutableLiveData("Opis nie wiem czego w sumie")
-    val imgId = MutableLiveData( R.drawable.kai )
+    var imgId = MutableLiveData( R.drawable.kai )
 }

@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_item_list" />
 
     <fragment
-        android:id="@+id/nav_set_img"
-        android:name="com.skow.lab5.ui.set_image.FragmentSetImage"
+        android:id="@+id/nav_img_gallery"
+        android:name="com.skow.lab5.ui.set_image.GalleryFragment"
         android:label="@string/menu_imgs"
-        tools:layout="@layout/fragment_set_image" />
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_add_item"
@@ -46,4 +46,11 @@
         android:name="com.skow.lab5.ui.items_list.DetailsItemFragment"
         android:label="@string/menu_imgs"
         tools:layout="@layout/fragment_add_item" />
+
+    <fragment
+        android:id="@+id/nav_img_set"
+        android:name="com.skow.lab5.ui.set_image.ImageFragmentSet"
+        android:label="@string/set_image"
+        android:layout="@layout/image_fragment_set" />
+
 </navigation>

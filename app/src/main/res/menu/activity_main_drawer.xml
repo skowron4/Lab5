@@ -17,7 +17,7 @@
             android:icon="@drawable/ic_data_foreground"
             android:title="@string/menu_dates" />
         <item
-            android:id="@+id/nav_set_img"
+            android:id="@+id/nav_img_gallery"
             android:icon="@drawable/ic_data_foreground"
             android:title="@string/menu_imgs" />
     </group>

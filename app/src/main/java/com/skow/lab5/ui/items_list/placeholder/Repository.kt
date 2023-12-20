@@ -1,6 +1,5 @@
 package com.skow.lab5.ui.items_list.placeholder
 
-import android.content.ClipData.Item
 import android.content.Context
 
 class Repository(context: Context) {

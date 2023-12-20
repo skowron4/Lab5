@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.skow.lab5.MainActivity
 import com.skow.lab5.databinding.FragmentAddItemBinding
 import com.skow.lab5.ui.items_list.placeholder.ItemEntity
@@ -41,7 +42,7 @@ class AddItemFragment : DialogFragment() {
         })
 
         binding.cancelButton.setOnClickListener {
-            dismiss()
+            findNavController().navigateUp()
         }
 
         binding.saveButton.setOnClickListener {

@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.skow.lab5.MainActivity
 import com.skow.lab5.R
@@ -70,7 +68,6 @@ class EditItemFragment : DialogFragment() {
 
             val itemViewModel  = (requireActivity() as MainActivity).itemViewModel
             itemViewModel.updateItem(newItem)
-
         }
 
         binding.deleteButton.setOnClickListener {

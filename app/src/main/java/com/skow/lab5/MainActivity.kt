@@ -1,5 +1,6 @@
 package com.skow.lab5
 
+import android.os.Build
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import android.view.Menu
@@ -15,12 +16,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import com.skow.lab5.databinding.ActivityMainBinding
 import com.skow.lab5.ui.items_list.ItemViewModel
+import android.Manifest
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     val itemViewModel by viewModels<ItemViewModel>()
+
+    private val REQUIRED_PERMISSIONS = mutableListOf(
+        Manifest.permission.CAMERA,
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.READ_MEDIA_IMAGES
+    ).apply {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+    }.toTypedArray()
+
+    private val REQUEST_CODE = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +55,13 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_settings, R.id.nav_items_list, R.id.nav_set_img
+                R.id.nav_home, R.id.nav_settings, R.id.nav_items_list, R.id.nav_img_gallery
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        requestPermissions()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,5 +76,27 @@ class MainActivity : AppCompatActivity() {
 
     fun getController(): NavController {
         return findNavController(R.id.nav_host_fragment_content_main)
+    }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE)
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) ==
+                PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(this, "Permissions not granted.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

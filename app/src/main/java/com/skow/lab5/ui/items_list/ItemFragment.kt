@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -55,16 +54,10 @@ class ItemFragment : Fragment() {
                 }
             }
 
-//            childFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
             val fab: FloatingActionButton = view.findViewById(R.id.fab)
 
             fab.setOnClickListener {
                 findNavController().navigate(R.id.nav_add_item)
-
-//                addItemFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Lab5)
-//
-//                addItemFragment.show(requireActivity().supportFragmentManager, "AddItemFragment")
             }
         }
 
